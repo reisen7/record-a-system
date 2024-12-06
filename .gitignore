@@ -1,0 +1,8 @@
+/target/
+/.settings/
+.project
+.classpath
+.checkstyle
+/src/main/resources/mybatis-spring.xml
+mysqldb.properties
+!/.idea/
