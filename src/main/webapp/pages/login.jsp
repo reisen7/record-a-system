@@ -90,7 +90,7 @@
 </div>
 
 <div class="fly-footer">
-  <p><a href="http://www.xintoucloud.com" target="_blank">新投云</a> 2017 &copy; <a href="http://www.xintoucloud.com" target="_blank">xintoucloud.com 出品</a></p>
+  <p><a href="" target="_blank"></a> 2024 &copy; <a href="" target="_blank">your comcapy 出品</a></p>
 </div>
 
 <script src="../res/layui/layui.js"></script>

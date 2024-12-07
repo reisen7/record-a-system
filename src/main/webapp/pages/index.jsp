@@ -111,7 +111,7 @@
 
 
 <div class="fly-footer">
-  <p><a href="http://www.xintoucloud.com" target="_blank">新投云</a> 2017 &copy; <a href="http://www.xintoucloud.com" target="_blank">xintoucloud.com 出品</a></p>
+  <p> 2017 &copy; <a href="http://www.baidu.com" target="_blank">  2024 Your Company Name. All rights reserved </a></p>
 </div>
 
 <script src="../res/layui/layui.js"></script>
