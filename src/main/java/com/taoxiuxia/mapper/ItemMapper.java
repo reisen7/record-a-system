@@ -16,7 +16,7 @@ public interface ItemMapper {
 
 	/*int insert(Item record);*/
 
-	Map<String, Object> insert(Map<String, Object> map);
+	int insert(Map<String, Object> map);
 	
 	int updateByPrimaryKeySelective(Item record);
 

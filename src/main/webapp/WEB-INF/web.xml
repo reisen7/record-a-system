@@ -84,7 +84,7 @@
 	
 	<welcome-file-list>
 		<welcome-file>
-			userController/showUserLogin.action
+			userController/showIndex.action
 		</welcome-file>
 	</welcome-file-list>
 </web-app>

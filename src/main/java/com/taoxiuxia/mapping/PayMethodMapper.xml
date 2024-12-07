@@ -116,16 +116,16 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   
- <!--  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.taoxiuxia.model.PayMethod" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.taoxiuxia.model.PayMethod" >
     insert into pay_method (user_id, name, is_count_in_this_month_ex, in_or_ex, remark, dele, sort)
-    values (#{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{isCountInThisMonthEx,jdbcType=INTEGER}, #{inOrEx,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+    values (#{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+      #{isCountInThisMonthEx,jdbcType=INTEGER}, #{inOrEx,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
       #{dele,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER})
-  </insert> -->
+  </insert>
   
-  <select id="insert" parameterMap="payMethodParaMap" statementType="CALLABLE">
-    CALL insertPayMethod(?,?,?,?,?,?,?)
-  </select>
+<!--  <select id="insert" parameterMap="payMethodParaMap" statementType="CALLABLE">-->
+<!--    CALL insertPayMethod(?,?,?,?,?,?,?)-->
+<!--  </select>-->
     
   <parameterMap type="java.util.Map" id="payMethodParaMap">
      <parameter property="userId" mode="IN" jdbcType="INTEGER"/>

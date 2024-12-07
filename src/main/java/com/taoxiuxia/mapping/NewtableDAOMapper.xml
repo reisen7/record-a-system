@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taoxiuxia.mapper.NewtableDAOMapper">
+  <resultMap id="BaseResultMap" type="com.taoxiuxia.model.Newtable">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="money" jdbcType="VARCHAR" property="money" />
+    <result column="cid" jdbcType="VARCHAR" property="cid" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="details" jdbcType="VARCHAR" property="details" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, money, cid, add_time, details, user_id, type
+  </sql>
+  <insert id="insertBatch" parameterType="com.taoxiuxia.model.Newtable">
+    insert into newtable (money, cid, add_time, 
+      details, user_id, type
+      )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.money,jdbcType=VARCHAR}, #{item.cid,jdbcType=VARCHAR}, #{item.addTime,jdbcType=TIMESTAMP}, 
+        #{item.details,jdbcType=VARCHAR}, #{item.userId,jdbcType=VARCHAR}, #{item.type,jdbcType=VARCHAR}
+        )
+    </foreach>
+  </insert>
+  <sql id="MysqlSuffix">
+    <if test="page != null">
+      <![CDATA[ limit #{page.begin} , #{page.length} ]]>
+    </if>
+  </sql>
+</mapper>

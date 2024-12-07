@@ -57,7 +57,8 @@ public class AuthorityFilter implements Filter {
 		String req_uri = request.getRequestURI();
 		HttpSession session = request.getSession();
 		String type = req_uri.substring(req_uri.lastIndexOf('.') + 1);
-		
+
+		System.out.println(req_uri);
 		// 静态资源忽略
 		if (ArrayUtils.contains(static_ext, type)) {
 			chain.doFilter(req, resp);
@@ -87,7 +88,7 @@ public class AuthorityFilter implements Filter {
 				PrintWriter out = response.getWriter();  
 		        out.println("<html>");      
 		        out.println("<script>");
-		        out.println("parent.location.href = ('"+request.getContextPath()+"/userController/showUserLogin.action')");      
+		        out.println("parent.location.href = ('"+request.getContextPath()+"/userController/showIndex.action')");
 		        out.println("</script>");      
 		        out.println("</html>");   
 				return;

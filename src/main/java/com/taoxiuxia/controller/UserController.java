@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -12,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.taoxiuxia.mapper.NewtableMapper;
+import com.taoxiuxia.model.*;
+import com.taoxiuxia.service.NewtableService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +25,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.taoxiuxia.exception.BusinessException;
-import com.taoxiuxia.model.SessionUser;
-import com.taoxiuxia.model.User;
 import com.taoxiuxia.service.IItemService;
 import com.taoxiuxia.service.IPayMethodService;
 import com.taoxiuxia.service.IUserService;
@@ -47,7 +49,12 @@ public class UserController {
 	private IItemService itemService;
 
 	private IPayMethodService payMethodService;
-	
+
+	@Autowired
+	private NewtableService newtableService;
+
+	@Autowired
+	private NewtableMapper newtableMapper;
 
 	/**
 	 * 注册页面
@@ -68,15 +75,115 @@ public class UserController {
 	public String showUserActive(Model model) {
 		return "pages/userActive";
 	}
-	
+
+
+	@RequestMapping("/add")
+	public String add(Model model) {
+		return "pages/add";
+	}
+
+	@RequestMapping("/add2")
+	public String add2(Model model) {
+		return "pages/add2";
+	}
+
+	@RequestMapping("/addNew")
+	public @ResponseBody Map<String ,Object> addNew(HttpSession session, NewtableRq newtable)  {
+		String email = (String) session.getAttribute(Constants.EMAIL);
+		newtable.setUserId(email);
+		Map<String ,Object> map = new HashMap<String ,Object>();
+		try {
+			if (email != null){
+				boolean n = newtableService.add(newtable);
+				if (n){
+					map.put("code",200);
+					map.put("info","添加成功");
+					return map;
+				}
+			}else{
+				map.put("code",500);
+				map.put("info","未登录");
+				return map;
+			}
+		}catch (Exception o){
+			map.put("code",500);
+			map.put("info","未登录");
+		}
+		map.put("code",500);
+		map.put("info","未知错误");
+		return map;
+	}
+
+	@RequestMapping("/list")
+	public @ResponseBody Map<String ,Object> list(HttpSession session, String cid,String type)  {
+		String email = (String) session.getAttribute(Constants.EMAIL);
+		Map<String ,Object> map = new HashMap<String ,Object>();
+		NewtableExample example = new NewtableExample();
+		NewtableExample.Criteria criteria = example.createCriteria();
+		if (type != null && !type.equals("")){
+			criteria.andTypeEqualTo(type);
+		}
+		if (cid != null && !type.equals("")){
+			criteria.andCidEqualTo(cid);
+		}
+		criteria.andUserIdEqualTo(email);
+		List<Newtable> list =  newtableMapper.selectByExample(example);
+		map.put("code",200);
+		map.put("data",list);
+		return map;
+	}
 	/**
 	 * 登陆界面
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/showUserLogin")
-	public String showUserLogin(Model model) {
+	public String showUserLogin(Model model,HttpSession session) {
+
+		String email = (String) session.getAttribute(Constants.EMAIL);
+		if (email != null){
+			return "pages/main";
+		}
 		return "pages/login";
+	}
+
+	/**
+	 * 登陆界面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/showIndex")
+	public String showIndex(Model model) {
+		return "pages/index";
+	}
+
+
+	/**
+	 * 登陆界面
+	 * @param
+	 * @return
+	 */
+	@RequestMapping("/main")
+	public String main(String cid ,String type,HttpSession session,Model model) {
+
+		String se = (String) session.getAttribute(Constants.EMAIL);
+		if (se == null && se.equals("")){
+			return "pages/index";
+		}
+		Map<String ,Object> map = new HashMap<String ,Object>();
+		map.put("cid",cid);
+		map.put("type",type);
+		return "pages/main";
+	}
+
+	/**
+	 * 登陆界面
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/showReg")
+	public String showReg(Model model) {
+		return "pages/reg";
 	}
 
 	/**
@@ -97,11 +204,11 @@ public class UserController {
 		
 		// 0:未注册;1:已注册，未激活;2:已注册，已激活
 		int emailState = userService.isEmailRegister(email);
-		if(emailState == 0 || emailState == 1){
+		if(emailState == 0){
 			
 			User userChecked = userService.findUserByUserName(userName);
 			if(userChecked != null && !userChecked.getEmail().equals(email)){ // 用户名已存在  且  用户名不与该email匹配就是被占用
-				map.put("info", "用户名被占用，请修改用户名"); 
+				map.put("info", "昵称被占用，请修改昵称");
 				return map;
 			}
 			
@@ -111,7 +218,7 @@ public class UserController {
 			user.setName(userName);
 			user.setEmail(email);
 			user.setPassword(password);
-			user.setIsActive(Constants.NOT_ACTIVE);
+			user.setIsActive(Constants.ACTIVE);
 			user.setActivationCode(activationCode);
 			user.setPassword(PasswordUtil.geneMD5WithSalt(user.getPassword()));
 			user.setRegisterTime(new Date());
@@ -129,7 +236,8 @@ public class UserController {
 			}
 			
 			session.setAttribute(Constants.EMAIL, email);
-			map.put("info", "下一步");
+			map.put("info", "注册成功");
+			map.put("code",200);
 			return map;
 		}else if(emailState == 2){  // 已注册，请登录
 			map.put("info", "邮箱已经注册，请登录");
@@ -151,73 +259,37 @@ public class UserController {
 	
 	/**
 	 * 登录
-	 * @param session
-	 * @param response
-	 * @param account
-	 * @param password
-	 * @param checkCode
-	 * @param rememberMe
 	 * @return
 	 */
 	@RequestMapping(value = "/login.action", produces = "application/json;charset=UTF-8")
-	public @ResponseBody Map<String ,Object> login(HttpSession session, HttpServletResponse response, String account, String password,  String checkCode,String rememberMe) {
+	public @ResponseBody Map<String ,Object> login(HttpSession session,String account, String password) {
 		final String REMEMBERME ="true";
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		try {
-			String sessionCheckCode = String.valueOf(session.getAttribute(Constants.check_code_key));
-			if(StringTools.isEmpty(sessionCheckCode)){
-				map.put("info", "验证码已过期，请刷新页面重试");
-				logger.info("验证码已过期，请刷新页面重试");
-				return map;
-			}
-			if (!StringTools.isEmpty(sessionCheckCode) && !sessionCheckCode.equalsIgnoreCase(checkCode)) {
-				map.put("info", "验证码错误");
-				logger.info("验证码错误");
-				return map;
-			}
-			
-			User user = userService.login(account, password, false); 
+
+			User user = userService.login(account, password, false);
 			SessionUser sessionUser = new SessionUser();
 			sessionUser.setUserId(user.getId());
 			sessionUser.setUserName(user.getName());
-			session.setAttribute(Constants.SESSION_USER_KEY, sessionUser);
-			session.setAttribute(Constants.USER_ID, user.getId());
-			
-			// 记住登录状态
-			if (REMEMBERME.equals(rememberMe)) {
-				// 自动登录，保存用户名密码到Cookie
-				String infor = URLEncoder.encode(account.toString(), "utf-8") + "|" + user.getPassword();
-				// 清除之前的Cookie信息
-				Cookie cookie = new Cookie(Constants.COOKIE_USER_INFO, null);
-				cookie.setPath("/");
-				cookie.setMaxAge(0);
-				// 将用户信息保存到Cookie中
-				Cookie cookieInfo = new Cookie(Constants.COOKIE_USER_INFO, infor);
-				cookieInfo.setPath("/");
-				// 设置最大生命周期为1年
-				cookieInfo.setMaxAge(31536000);
-				response.addCookie(cookieInfo);
-			} else {  //清空cookie
-				Cookie cookie = new Cookie(Constants.COOKIE_USER_INFO, null);
-				cookie.setPath("/");
-				cookie.setMaxAge(0);
-				response.addCookie(cookie);
-			}
+			session.setAttribute(Constants.EMAIL,account);
 		}catch(BusinessException e){
 			if(map.get("info")==null){
 				map.put("info", e.getMessage());
+				map.put("code",500);
 				logger.info("登录失败: "+ e.getMessage());
 				return map;
 			}
 		}catch (Exception e) {
 			if(map.get("info")==null){
 				map.put("info", "登录失败");
+				map.put("code",500);
 				logger.info("登录失败");
 			}
 			return map;
 		}
 		map.put("info", "登录成功");
+		map.put("code",200);
 		return map;
 	}
 	

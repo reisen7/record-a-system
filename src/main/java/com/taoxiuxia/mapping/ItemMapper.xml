@@ -100,13 +100,13 @@
   
   <insert id="insert" parameterType="com.taoxiuxia.model.Item">
     insert into item
-        id,
+        (id,
         user_id,
         name,
         in_or_ex,
         remark,
         dele,
-        sort
+        sort)
      values (
       #{id,jdbcType=INTEGER},
       #{userId,jdbcType=INTEGER},
@@ -114,7 +114,7 @@
       #{inOrEx,jdbcType=VARCHAR},
       #{remark,jdbcType=CHAR},
       #{dele,jdbcType=INTEGER},
-       #{id,jdbcType=INTEGER}
+       #{id,jdbcType=INTEGER})
   </insert>
     
   <parameterMap type="java.util.Map" id="itemParaMap">

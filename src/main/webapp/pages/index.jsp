@@ -16,7 +16,7 @@
 
 <div class="fly-header layui-bg-black">
   <div class="layui-container">
-    <a class="fly-logo" href="/">
+    <a class="fly-logo" href="showIndex.action">
       <img src="../res/images/logo.png" alt="layui">
     </a>
     
@@ -31,7 +31,7 @@
 	        <a href="showUserLogin.action">登入</a>
 	      </li>
 	      <li class="layui-nav-item">
-	        <a href="reg.html">注册</a>
+	        <a href="showReg.action">注册</a>
 	      </li>
 	      <li class="layui-nav-item layui-hide-xs">
 	        <a href="" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})" title="QQ登入" class="iconfont icon-qq"></a>
@@ -99,7 +99,7 @@
                     <h4 style="color: #949494;">我们，值得信赖！</h4>
                 </div>
 
-                <div class="cntl-image"><img src="res/images/a3.png" class="img-responsive"
+                <div class="cntl-image"><img src="../res/images/a3.png" class="img-responsive"
                                              draggable="false"></div>
                 <div class="cntl-icon cntl-center">·</div>
             </div>
@@ -114,11 +114,11 @@
   <p><a href="http://www.xintoucloud.com" target="_blank">新投云</a> 2017 &copy; <a href="http://www.xintoucloud.com" target="_blank">xintoucloud.com 出品</a></p>
 </div>
 
-<script src="res/layui/layui.js"></script>
+<script src="../res/layui/layui.js"></script>
 <script>
 layui.config({
 	  version: "3.0.0"
-	  ,base: 'res/mods/'
+	  ,base: '../res/mods/'
 	}).extend({
 	  fly: 'index'
 	}).use('fly');
@@ -129,13 +129,13 @@ layui.cache.page = 'jie';
 layui.cache.user = {
   username: '游客'
   ,uid: -1
-  ,avatar: 'res/images/avatar/00.jpg'
+  ,avatar: '../res/images/avatar/00.jpg'
   ,experience: 83
   ,sex: '男'
 };
 layui.config({
   version: "3.0.0"
-  ,base: 'res/mods/'
+  ,base: '../res/mods/'
 }).extend({
   fly: 'index'
 }).use('fly');
