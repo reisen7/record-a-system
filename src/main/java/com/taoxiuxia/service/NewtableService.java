@@ -1,6 +1,7 @@
 package com.taoxiuxia.service;
 
 import com.taoxiuxia.model.Newtable;
+import com.taoxiuxia.model.NewtableExample;
 import com.taoxiuxia.model.NewtableRq;
 import com.taoxiuxia.util.PageRs;
 
@@ -34,6 +35,16 @@ public interface NewtableService {
 	 * @throws Exception
 	 */
 	PageRs select(NewtableRq newtableRq) throws Exception;
+
+
+	/**
+	 * 列表查询
+	 * @param newtableRq
+	 * @return
+	 * @throws Exception
+	 */
+	List<Newtable> selectbyExample(NewtableExample example) ;
+
 
 	/**
 	 * 统计数量

@@ -106,9 +106,9 @@
       <div class="fly-panel" style="margin-bottom: 0;">
         
         <div class="fly-panel-title fly-filter">
-          <a href="main?type=2">支出</a>
+          <span id="zhichu" >支出</span>
           <span class="fly-mid"></span>
-          <a href="main?type=1">收入</a>
+          <span id="shouru">收入</span>
          
           <span class="fly-filter-right layui-hide-xs">
             <a href="main?order=time" class="layui-this">时间</a>
@@ -118,21 +118,21 @@
         </div>
 
         <ul class="fly-list">  
-			<li>
-		            <a href="#" class="fly-avatar">
-		              <img src="../res/images/cat/cat_doprava_1.png" alt="交通">
-		            </a>
-		            <h2>
-		              <a class="layui-badge">交通</a>
-		              <a href="jie/detail.html">打车费用</a>
-		            </h2>
-		            <div class="fly-list-info">
-		              <span>2019-01-14 08:00:00</span>
-		            </div>
-		            <div class="fly-list-badge">
-		              <span class="layui-badge layui-bg-red">50.00</span>
-		            </div>
-		          </li>
+<%--			<li>--%>
+<%--		            <a href="#" class="fly-avatar">--%>
+<%--		              <img src="../res/images/cat/cat_doprava_1.png" alt="交通">--%>
+<%--		            </a>--%>
+<%--		            <h2>--%>
+<%--		              <a class="layui-badge">交通</a>--%>
+<%--		              <a href="jie/detail.html">打车费用</a>--%>
+<%--		            </h2>--%>
+<%--		            <div class="fly-list-info">--%>
+<%--		              <span>2019-01-14 08:00:00</span>--%>
+<%--		            </div>--%>
+<%--		            <div class="fly-list-badge">--%>
+<%--		              <span class="layui-badge layui-bg-red">50.00</span>--%>
+<%--		            </div>--%>
+<%--		          </li>--%>
 <%-- 	<li>--%>
 <%--		            <a href="#" class="fly-avatar">--%>
 <%--		              <img src="../res/images/cat/cat_doprava_1.png" alt="交通">--%>
@@ -243,7 +243,7 @@
 <%--		          </li>--%>
 
 			<input style="display: none" type="text" id="cid" value="${cid}" /> -
-			<input style="display: none" type="text" id="type"   value="${type}" />
+			<input style="display: none" type="text" id="type" value="${type}" />
 
         </ul>
       </div>
@@ -285,11 +285,10 @@ layui.use(['laydate','form','jquery'], function(){
 	let form = layui.form;
 	let $ = layui.jquery;
 
-	$(document).ready(function (){
+	function fundquert(parameters) {
 		var cid = $("#cid").val()
-		var type = $("#type").val()
-		console.log(cid)
-		console.log(type)
+		var type = '2';
+		$('ul.fly-list li').remove();
 		$.ajax({
 			url: 'list.action?cid='+cid+'&type=' + type,
 			type: 'post',
@@ -297,9 +296,11 @@ layui.use(['laydate','form','jquery'], function(){
 				if (res.code == 200){
 					var data = res.data;
 					$('.fly-panel.fly-column.layui-clear li').removeClass("layui-hide-xs layui-this");
-					var targetLi = document.querySelectorAll('.fly-panel.fly-column.layui-clear li')[cid];
+					// var targetLi = document.querySelectorAll('.fly-panel.fly-column.layui-clear li')[1];
 					// 添加新的class
-					targetLi.classList.add('layui-hide-xs layui-this');
+					console.log(cid)
+					$("ul.layui-clear li").eq(cid).addClass("layui-hide-xs layui-this");
+					// targetLi.classList.add('layui-hide-xs layui-this');
 
 					//渲染数据
 					for (var i = 0; i < data.length; i++) {
@@ -316,40 +317,50 @@ layui.use(['laydate','form','jquery'], function(){
 						if (data[i].cid == '1'){
 							png = '<img src="../res/images/cat/cat_bills_1.png" alt="工资">'
 						}else if(data[i].cid == '2'){
-							png = '<img src="../res/images/cat/cat_bills_2.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_car_1.png" alt="工资">'
 						}else if(data[i].cid == '3'){
-							png = '<img src="../res/images/cat/cat_bills_3.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_doprava_1.png" alt="工资">'
 						}else if(data[i].cid == '4'){
-							png = '<img src="../res/images/cat/cat_bills_4.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_drink_1.png" alt="工资">'
 						}else if(data[i].cid == '5'){
-							png = '<img src="../res/images/cat/cat_bills_5.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_entern_1.png" alt="工资">'
 						}else if(data[i].cid == '6'){
-							png = '<img src="../res/images/cat/cat_bills_6.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_food_1.png" alt="工资">'
 						}else if(data[i].cid == '7'){
-							png = '<img src="../res/images/cat/cat_bills_7.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_gift_1.png" alt="工资">'
 						}else if(data[i].cid == '8'){
-							png = '<img src="../res/images/cat/cat_bills_8.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_health_1.png" alt="工资">'
 						}else if(data[i].cid == '9'){
-							png = '<img src="../res/images/cat/cat_bills_9.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_hotel_1.png" alt="工资">'
 						}else if(data[i].cid == '10'){
-							png = '<img src="../res/images/cat/cat_bills_10.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_house_1.png" alt="工资">'
 						}else if(data[i].cid == '11'){
-							png = '<img src="../res/images/cat/cat_bills_11.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_love_1.png" alt="工资">'
 						}else if(data[i].cid == '12'){
-							png = '<img src="../res/images/cat/cat_bills_12.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_money_1.png" alt="工资">'
 						}else if(data[i].cid == '13'){
-							png = '<img src="../res/images/cat/cat_bills_13.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_movies_1.png" alt="工资">'
 						}else if(data[i].cid == '14'){
-							png = '<img src="../res/images/cat/cat_bills_14.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_music_1.png" alt="工资">'
 						}else if(data[i].cid == '15'){
-							png = '<img src="../res/images/cat/cat_bills_15.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_nakup_1.png" alt="工资">'
 						}else if(data[i].cid == '16'){
-							png = '<img src="../res/images/cat/cat_bills_16.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_otaznik_1.png" alt="工资">'
 						}else if(data[i].cid == '17'){
-							png = '<img src="../res/images/cat/cat_bills_17.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_penize_1.png" alt="工资">'
 						}else if(data[i].cid == '18'){
-							png = '<img src="../res/images/cat/cat_bills_18.png" alt="工资">'
+							png = '<img src="../res/images/cat/cat_personal_1.png" alt="工资">'
 						}
+
+						var date = new Date(data[i].addTime);
+						// 获取年、月、日、时、分、秒等信息，并进行格式化处理，以下示例几种常见格式
+
+						// 格式化为 "yyyy-MM-dd" 格式
+						var year = date.getFullYear();
+						var month = ('0' + (date.getMonth() + 1)).slice(-2);
+						var day = ('0' + date.getDate()).slice(-2);
+						var formattedDate = year + '-' + month + '-' + day;
+						console.log("格式化后的日期（yyyy-MM-dd）:", formattedDate);
 
 						var liHtml = '<li>' +
 								'<a href="#" class="fly-avatar">' +
@@ -360,7 +371,7 @@ layui.use(['laydate','form','jquery'], function(){
 								'<a href="">' + data[i].details +'</a>' +
 								'</h2>' +
 								'<div class="fly-list-info">' +
-								'<span>' + data[i].addTime +'</span>' +
+								'<span>' + formattedDate +'</span>' +
 								'</div>' +
 								'<div class="fly-list-badge">' +
 								div + data[i].money +'</span>' +
@@ -375,7 +386,222 @@ layui.use(['laydate','form','jquery'], function(){
 				}
 			}
 		});
+	}
+
+	function fundquert1(parameters) {
+		var cid = $("#cid").val()
+		var type = '1';
+		$('ul.fly-list li').remove();
+		$.ajax({
+			url: 'list.action?cid='+cid+'&type=' + type,
+			type: 'post',
+			success: function (res) {
+				if (res.code == 200){
+					var data = res.data;
+					$('.fly-panel.fly-column.layui-clear li').removeClass("layui-hide-xs layui-this");
+					// var targetLi = document.querySelectorAll('.fly-panel.fly-column.layui-clear li')[1];
+					// 添加新的class
+					console.log(cid)
+					$("ul.layui-clear li").eq(cid).addClass("layui-hide-xs layui-this");
+					// targetLi.classList.add('layui-hide-xs layui-this');
+
+					//渲染数据
+					for (var i = 0; i < data.length; i++) {
+
+						var outgoing = '<span class="layui-badge layui-bg-red">'
+						var incoming = '<span class="layui-badge fly-badge-accept">'
+						var div;
+						if (data[i].type == '2'){
+							div = outgoing
+						}else{
+							div = incoming;
+						}
+						var png
+						if (data[i].cid == '1'){
+							png = '<img src="../res/images/cat/cat_bills_1.png" alt="工资">'
+						}else if(data[i].cid == '2'){
+							png = '<img src="../res/images/cat/cat_car_1.png" alt="工资">'
+						}else if(data[i].cid == '3'){
+							png = '<img src="../res/images/cat/cat_doprava_1.png" alt="工资">'
+						}else if(data[i].cid == '4'){
+							png = '<img src="../res/images/cat/cat_drink_1.png" alt="工资">'
+						}else if(data[i].cid == '5'){
+							png = '<img src="../res/images/cat/cat_entern_1.png" alt="工资">'
+						}else if(data[i].cid == '6'){
+							png = '<img src="../res/images/cat/cat_food_1.png" alt="工资">'
+						}else if(data[i].cid == '7'){
+							png = '<img src="../res/images/cat/cat_gift_1.png" alt="工资">'
+						}else if(data[i].cid == '8'){
+							png = '<img src="../res/images/cat/cat_health_1.png" alt="工资">'
+						}else if(data[i].cid == '9'){
+							png = '<img src="../res/images/cat/cat_hotel_1.png" alt="工资">'
+						}else if(data[i].cid == '10'){
+							png = '<img src="../res/images/cat/cat_house_1.png" alt="工资">'
+						}else if(data[i].cid == '11'){
+							png = '<img src="../res/images/cat/cat_love_1.png" alt="工资">'
+						}else if(data[i].cid == '12'){
+							png = '<img src="../res/images/cat/cat_money_1.png" alt="工资">'
+						}else if(data[i].cid == '13'){
+							png = '<img src="../res/images/cat/cat_movies_1.png" alt="工资">'
+						}else if(data[i].cid == '14'){
+							png = '<img src="../res/images/cat/cat_music_1.png" alt="工资">'
+						}else if(data[i].cid == '15'){
+							png = '<img src="../res/images/cat/cat_nakup_1.png" alt="工资">'
+						}else if(data[i].cid == '16'){
+							png = '<img src="../res/images/cat/cat_otaznik_1.png" alt="工资">'
+						}else if(data[i].cid == '17'){
+							png = '<img src="../res/images/cat/cat_penize_1.png" alt="工资">'
+						}else if(data[i].cid == '18'){
+							png = '<img src="../res/images/cat/cat_personal_1.png" alt="工资">'
+						}
+
+						var date = new Date(data[i].addTime);
+						// 获取年、月、日、时、分、秒等信息，并进行格式化处理，以下示例几种常见格式
+
+						// 格式化为 "yyyy-MM-dd" 格式
+						var year = date.getFullYear();
+						var month = ('0' + (date.getMonth() + 1)).slice(-2);
+						var day = ('0' + date.getDate()).slice(-2);
+						var formattedDate = year + '-' + month + '-' + day;
+						console.log("格式化后的日期（yyyy-MM-dd）:", formattedDate);
+
+						var liHtml = '<li>' +
+								'<a href="#" class="fly-avatar">' +
+								png +
+								'</a>' +
+								'<h2>' +
+								'<a class="layui-badge">' + data[i].details +'</a>' +
+								'<a href="">' + data[i].details +'</a>' +
+								'</h2>' +
+								'<div class="fly-list-info">' +
+								'<span>' + formattedDate +'</span>' +
+								'</div>' +
+								'<div class="fly-list-badge">' +
+								div + data[i].money +'</span>' +
+								'</div>' +
+								'</li>';
+						$('.fly-list').append(liHtml);
+
+					}
+
+
+
+				}
+			}
+		});
+	}
+	document.getElementById('shouru').addEventListener('click', fundquert1);
+	document.getElementById('zhichu').addEventListener('click', fundquert);
+
+	$(document).ready(function (){
+		var cid = $("#cid").val()
+		var type = $("#type").val()
+		console.log(cid)
+		console.log(type)
+		$.ajax({
+			url: 'list.action?cid='+cid+'&type=' + type,
+			type: 'post',
+			success: function (res) {
+				if (res.code == 200){
+					var data = res.data;
+					$('.fly-panel.fly-column.layui-clear li').removeClass("layui-hide-xs layui-this");
+					// var targetLi = document.querySelectorAll('.fly-panel.fly-column.layui-clear li')[1];
+					// 添加新的class
+					console.log(cid)
+					$("ul.layui-clear li").eq(cid).addClass("layui-hide-xs layui-this");
+					// targetLi.classList.add('layui-hide-xs layui-this');
+
+					//渲染数据
+					for (var i = 0; i < data.length; i++) {
+
+						var outgoing = '<span class="layui-badge layui-bg-red">'
+						var incoming = '<span class="layui-badge fly-badge-accept">'
+						var div;
+						if (data[i].type == '2'){
+							div = outgoing
+						}else{
+							div = incoming;
+						}
+						var png
+						if (data[i].cid == '1'){
+							png = '<img src="../res/images/cat/cat_bills_1.png" alt="工资">'
+						}else if(data[i].cid == '2'){
+							png = '<img src="../res/images/cat/cat_car_1.png" alt="工资">'
+						}else if(data[i].cid == '3'){
+							png = '<img src="../res/images/cat/cat_doprava_1.png" alt="工资">'
+						}else if(data[i].cid == '4'){
+							png = '<img src="../res/images/cat/cat_drink_1.png" alt="工资">'
+						}else if(data[i].cid == '5'){
+							png = '<img src="../res/images/cat/cat_entern_1.png" alt="工资">'
+						}else if(data[i].cid == '6'){
+							png = '<img src="../res/images/cat/cat_food_1.png" alt="工资">'
+						}else if(data[i].cid == '7'){
+							png = '<img src="../res/images/cat/cat_gift_1.png" alt="工资">'
+						}else if(data[i].cid == '8'){
+							png = '<img src="../res/images/cat/cat_health_1.png" alt="工资">'
+						}else if(data[i].cid == '9'){
+							png = '<img src="../res/images/cat/cat_hotel_1.png" alt="工资">'
+						}else if(data[i].cid == '10'){
+							png = '<img src="../res/images/cat/cat_house_1.png" alt="工资">'
+						}else if(data[i].cid == '11'){
+							png = '<img src="../res/images/cat/cat_love_1.png" alt="工资">'
+						}else if(data[i].cid == '12'){
+							png = '<img src="../res/images/cat/cat_money_1.png" alt="工资">'
+						}else if(data[i].cid == '13'){
+							png = '<img src="../res/images/cat/cat_movies_1.png" alt="工资">'
+						}else if(data[i].cid == '14'){
+							png = '<img src="../res/images/cat/cat_music_1.png" alt="工资">'
+						}else if(data[i].cid == '15'){
+							png = '<img src="../res/images/cat/cat_nakup_1.png" alt="工资">'
+						}else if(data[i].cid == '16'){
+							png = '<img src="../res/images/cat/cat_otaznik_1.png" alt="工资">'
+						}else if(data[i].cid == '17'){
+							png = '<img src="../res/images/cat/cat_penize_1.png" alt="工资">'
+						}else if(data[i].cid == '18'){
+							png = '<img src="../res/images/cat/cat_personal_1.png" alt="工资">'
+						}
+
+						var date = new Date(data[i].addTime);
+						// 获取年、月、日、时、分、秒等信息，并进行格式化处理，以下示例几种常见格式
+
+						// 格式化为 "yyyy-MM-dd" 格式
+						var year = date.getFullYear();
+						var month = ('0' + (date.getMonth() + 1)).slice(-2);
+						var day = ('0' + date.getDate()).slice(-2);
+						var formattedDate = year + '-' + month + '-' + day;
+						console.log("格式化后的日期（yyyy-MM-dd）:", formattedDate);
+
+						var liHtml = '<li>' +
+								'<a href="#" class="fly-avatar">' +
+								png +
+								'</a>' +
+								'<h2>' +
+								'<a class="layui-badge">' + data[i].details +'</a>' +
+								'<a href="">' + data[i].details +'</a>' +
+								'</h2>' +
+								'<div class="fly-list-info">' +
+								'<span>' + formattedDate +'</span>' +
+								'</div>' +
+								'<div class="fly-list-badge">' +
+								div + data[i].money +'</span>' +
+								'</div>' +
+								'</li>';
+						$('.fly-list').append(liHtml);
+
+					}
+
+
+
+				}
+			}
+		});
+
+
+
+
 	})
+
+
 
 })
 </script>

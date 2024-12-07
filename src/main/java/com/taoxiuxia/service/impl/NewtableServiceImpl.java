@@ -21,10 +21,20 @@ import java.util.List;
  * @version 1.1
  * @date 2024-12-07
  */
-@Service
+@Service("NewtableService")
 public class NewtableServiceImpl implements NewtableService {
-	@Autowired
+
+
 	private NewtableDAOMapper newtableDAOMapper;
+
+	public NewtableDAOMapper getNewtableDAOMapper() {
+		return newtableDAOMapper;
+	}
+
+	@Autowired
+	public void setNewtableDAOMapper(NewtableDAOMapper newtableDAOMapper) {
+		this.newtableDAOMapper = newtableDAOMapper;
+	}
 
 	//默认主键倒叙
 	private static final String DEFAULT_SORT = "desc";
@@ -50,6 +60,12 @@ public class NewtableServiceImpl implements NewtableService {
 		}
 		return pageRs;
 	}
+
+	@Override
+	public List<Newtable> selectbyExample(NewtableExample example) {
+		return newtableDAOMapper.selectByExample(example);
+	}
+
 
 	@Override
 	public long count(NewtableRq newtableRq) throws Exception {

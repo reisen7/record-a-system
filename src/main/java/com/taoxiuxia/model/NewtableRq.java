@@ -1,6 +1,9 @@
 package com.taoxiuxia.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.taoxiuxia.util.PageIn;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,6 +22,7 @@ public class NewtableRq extends PageIn implements Serializable {
 
 	private String cid;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date addTime;
 
 	private String details;

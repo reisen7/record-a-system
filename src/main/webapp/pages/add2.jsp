@@ -74,9 +74,9 @@
                   <div class="layui-input-block">
                     <select lay-verify="required" name="cid" lay-filter="column"> 
                       <option></option>
-                      		<option value="1">工资</option>
-                      		<option value="2">奖金</option>
-                      		<option value="3">其它</option> 
+                      		<option value="16">工资</option>
+                      		<option value="17">奖金</option>
+                      		<option value="18">其它</option>
          
                       
                     </select>

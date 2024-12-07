@@ -5,12 +5,14 @@ import java.util.List;
 import com.taoxiuxia.model.Newtable;
 import com.taoxiuxia.model.NewtableExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 /**
  * @author tools.49db.cn
  * @version 1.1
  * @date 2024-12-07
  */
+@Repository
 public interface NewtableMapper {
     int countByExample(NewtableExample example);
 

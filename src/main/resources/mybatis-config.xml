@@ -11,5 +11,7 @@
 		<mapper resource="com/taoxiuxia/mapping/UserMapper.xml" />
 		<mapper resource="com/taoxiuxia/mapping/BalanceMapper.xml" />
 		<mapper resource="com/taoxiuxia/mapping/PayMethodMapper.xml" />
+		<mapper resource="com/taoxiuxia/mapping/NewtableDAOMapper.xml" />
+		<mapper resource="com/taoxiuxia/mapping/NewtableMapper.xml" />
 	</mappers>
 </configuration> 

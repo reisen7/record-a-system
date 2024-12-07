@@ -50,11 +50,27 @@ public class UserController {
 
 	private IPayMethodService payMethodService;
 
-	@Autowired
 	private NewtableService newtableService;
 
-	@Autowired
 	private NewtableMapper newtableMapper;
+
+	public NewtableService getNewtableService() {
+		return newtableService;
+	}
+
+	@Autowired
+	public void setNewtableService(NewtableService newtableService) {
+		this.newtableService = newtableService;
+	}
+
+	public NewtableMapper getNewtableMapper() {
+		return newtableMapper;
+	}
+
+	@Autowired
+	public void setNewtableMapper(NewtableMapper newtableMapper) {
+		this.newtableMapper = newtableMapper;
+	}
 
 	/**
 	 * 注册页面
@@ -120,16 +136,25 @@ public class UserController {
 		Map<String ,Object> map = new HashMap<String ,Object>();
 		NewtableExample example = new NewtableExample();
 		NewtableExample.Criteria criteria = example.createCriteria();
-		if (type != null && !type.equals("")){
-			criteria.andTypeEqualTo(type);
+		if (email!=null && !email.equals("")){
+			criteria.andUserIdEqualTo(email);
 		}
-		if (cid != null && !type.equals("")){
+		if (cid!=null && !cid.equals("")){
 			criteria.andCidEqualTo(cid);
 		}
-		criteria.andUserIdEqualTo(email);
+		if (type!=null && !type.equals("")){
+			criteria.andTypeEqualTo(type);
+		}
+		NewtableRq newtableRq = new NewtableRq();
+		newtableRq.setCid(cid);
+		newtableRq.setType(type);
+
+		System.out.println(cid);
+		System.out.println(type);
 		List<Newtable> list =  newtableMapper.selectByExample(example);
 		map.put("code",200);
 		map.put("data",list);
+		System.out.println(list);
 		return map;
 	}
 	/**
@@ -171,8 +196,12 @@ public class UserController {
 			return "pages/index";
 		}
 		Map<String ,Object> map = new HashMap<String ,Object>();
+		System.out.println(cid);
+		System.out.println(type);
+
 		map.put("cid",cid);
 		map.put("type",type);
+		model.addAllAttributes(map);
 		return "pages/main";
 	}
 
