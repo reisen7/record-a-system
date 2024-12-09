@@ -2,143 +2,149 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>快速记 记下明白生活</title>
-
-<link rel="stylesheet" href="../res/layui/css/layui.css">
-<link rel="stylesheet" href="../res/css/global.css">
-<link rel="stylesheet" href="../res/css/cntl.css">
+    <meta charset="UTF-8">
+    <title>快速记 - 科技生活，清晰账本</title>
+    <!-- 引入Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../res/css/global.css">
+    <link rel="stylesheet" href="../res/css/cntl.css">
+    <style>
+        body {
+            background: #7591d3;
+            color: #e2e8f0;
+        }
+        .navbar {
+            background-color: #b3c4e0;
+        }
+        .feature-card {
+            background: #1e293b;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 0,0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        .feature-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+        .feature-image img:hover {
+            opacity: 0.8;
+        }
+        .footer {
+            color: #e2e8f0;
+        }
+        .btn-custom {
+            background-color: #6366f1;
+            color: white;
+            border-radius: 2rem;
+        }
+        .btn-custom:hover {
+            background-color: #4f46e5;
+        }
+    </style>
 </head>
+
 <body>
+<!-- 导航栏部分 -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="showIndex.action">
+            <img src="../res/images/logo.png" alt="Logo" height="30">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html"><i class="fas fa-user-circle"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="showUserLogin.action">登录</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="showReg.action">注册</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-
-<div class="fly-header layui-bg-black">
-  <div class="layui-container">
-    <a class="fly-logo" href="showIndex.action">
-      <img src="../res/images/logo.png" alt="layui">
-    </a>
-    
-    <ul class="layui-nav fly-nav-user">
-      
-      	
-      	  <!-- 未登入的状态 -->
-	      <li class="layui-nav-item">
-	        <a class="iconfont icon-touxiang layui-hide-xs" href="login.html"></a>
-	      </li>
-	      <li class="layui-nav-item">
-	        <a href="showUserLogin.action">登入</a>
-	      </li>
-	      <li class="layui-nav-item">
-	        <a href="showReg.action">注册</a>
-	      </li>
-<%--	      <li class="layui-nav-item layui-hide-xs">--%>
-<%--	        <a href="" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})" title="QQ登入" class="iconfont icon-qq"></a>--%>
-<%--	      </li>--%>
-<%--	      <li class="layui-nav-item layui-hide-xs">--%>
-<%--	        <a href="" onclick="layer.msg('正在通过微博登入', {icon:16, shade: 0.1, time:0})" title="微博登入" class="iconfont icon-weibo"></a>--%>
-<%--	      </li>--%>
-      	
-      	
-      
-      
-    </ul>
-  </div>
-</div>
-<div class="layui-container">
-<div class="layui-row">
-
-
-    <div class="cntl">
-			<span class="cntl-bar cntl-center">
-				<span class="cntl-bar-fill"></span>
-			</span>
-
-        <div class="cntl-states">
-
-            <div class="cntl-state">
-                <div class="cntl-content">
-                    <h2 style="color: #5F90D0;">还在为携带账本烦恼？</h2>
-                    <h3 style="color: #949494;">现在只需要连接网络，打开浏览器，便可以随时随地进行记账</h3>
-                    <h4 style="color: #949494;">当然，我们是<span style="font-size: 1.2em;color: #67b168;">免费</span>的</h4>
+<!-- 主体内容部分 -->
+<div class="container mt-5 pt-5">
+    <div class="row text-center">
+        <div class="col-lg-12 mb-4">
+            <h1 class="display-4 fw-bold">快速记 - 让您的生活更简单</h1>
+            <p class="lead">免费在线账本服务，安全可靠，随时访问。</p>
+        </div>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+                <div class="feature-image mb-3">
+                    <img src="../res/images/a4.png" alt="书本" class="img-fluid rounded">
                 </div>
-
-                <div class="cntl-image"><img src="../res/images/a4.png" alt="书本" class="img-responsive"
-                                             draggable="false"></div>
-                <div class="cntl-icon cntl-center">欢</div>
+                <h3>随时随地记账</h3>
+                <p>只需网络连接和浏览器，轻松管理个人财务。</p>
             </div>
-
-            <div class="cntl-state">
-                <div class="cntl-content">
-                    <h2 style="color: #5F90D0;">大账目轻松计算！</h2>
-                    <h3 style="color: #949494;">减轻你的计算压力。</h3>
-                    <h4 style="color: #949494;">让记账更从容。</h4>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+                <div class="feature-image mb-3">
+                    <img src="../res/images/a1.png" alt="计算" class="img-fluid rounded">
                 </div>
-
-                <div class="cntl-image"><img src="../res/images/a1.png" class="img-responsive"
-                                             draggable="false"></div>
-                <div class="cntl-icon cntl-center">迎</div>
+                <h3>智能计算</h3>
+                <p>简化复杂计算，让财务管理变得轻松。</p>
             </div>
-
-            <div class="cntl-state">
-                <div class="cntl-content">
-                    <h2 style="color: #5F90D0;">担心查看？</h2>
-                    <h3 style="color: #949494;">没问题，我们帮你准备了Excel导出。</h3>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+                <div class="feature-image mb-3">
+                    <img src="../res/images/a2.png" alt="导出" class="img-fluid rounded">
                 </div>
-
-                <div class="cntl-image"><img src="../res/images/a2.png" class="img-responsive"
-                                             draggable="false"></div>
-                <div class="cntl-icon cntl-center">您</div>
+                <h3>Excel导出</h3>
+                <p>方便查看历史记录，支持导出到Excel。</p>
             </div>
-
-            <div class="cntl-state">
-                <div class="cntl-content">
-                    <h2 style="color: #5f90d0;">还在担心安全？</h2>
-                    <h3 style="color: #949494;">我们使用了特殊加密算法，进行数据传输</h3>
-                    <h4 style="color: #949494;">我们，值得信赖！</h4>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card">
+                <div class="feature-image mb-3">
+                    <img src="../res/images/a3.png" alt="安全" class="img-fluid rounded">
                 </div>
-
-                <div class="cntl-image"><img src="../res/images/a3.png" class="img-responsive"
-                                             draggable="false"></div>
-                <div class="cntl-icon cntl-center">·</div>
+                <h3>数据安全</h3>
+                <p>采用高级加密技术，确保您的信息安全。</p>
             </div>
         </div>
     </div>
 </div>
 
-</div>
+<!-- 页脚部分 -->
+<footer class="footer py-4">
+    <div class="container text-center">
+        <p>&copy; 2024 Your Company Name. All rights reserved.</p>
+    </div>
+</footer>
 
-
-<div class="fly-footer">
-  <p> 2017 &copy; <a href="http://www.baidu.com" target="_blank">  2024 Your Company Name. All rights reserved </a></p>
-</div>
-
+<!-- 引入相关的JavaScript文件 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../res/layui/layui.js"></script>
 <script>
-layui.config({
-	  version: "3.0.0"
-	  ,base: '../res/mods/'
-	}).extend({
-	  fly: 'index'
-	}).use('fly');
-</script>
-
-<script type="text/javascript">
-layui.cache.page = 'jie';
-layui.cache.user = {
-  username: '游客'
-  ,uid: -1
-  ,avatar: '../res/images/avatar/00.jpg'
-  ,experience: 83
-  ,sex: '男'
-};
-layui.config({
-  version: "3.0.0"
-  ,base: '../res/mods/'
-}).extend({
-  fly: 'index'
-}).use('fly');
+    layui.config({
+        version: "3.0.0",
+        base: '../res/mods/'
+    }).extend({
+        fly: 'index'
+    }).use('fly');
 </script>
 </body>
+
 </html>

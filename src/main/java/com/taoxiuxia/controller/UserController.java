@@ -226,7 +226,7 @@ public class UserController {
 	 * @param password
 	 * @return
 	 */
-	@RequestMapping(value = "/register.action", produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/register", produces = "application/json;charset=UTF-8")
 	public @ResponseBody Map<String ,Object> register(HttpSession session, String userName, String email, String password) {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -278,7 +278,7 @@ public class UserController {
 	/**
 	 * 注册第二步，激活邮箱，
 	 */
-	@RequestMapping(value = "/active.action", produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/active", produces = "application/json;charset=UTF-8")
 	public @ResponseBody Map<String ,Object> active(User user){
 		String result = userService.active(user.getEmail(), user.getActivationCode());
 		Map<String ,Object> map = new HashMap<String ,Object>();
@@ -290,7 +290,7 @@ public class UserController {
 	 * 登录
 	 * @return
 	 */
-	@RequestMapping(value = "/login.action", produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/login", produces = "application/json;charset=UTF-8")
 	public @ResponseBody Map<String ,Object> login(HttpSession session,String account, String password) {
 		final String REMEMBERME ="true";
 		Map<String, Object> map = new HashMap<String, Object>();
