@@ -12,82 +12,107 @@
     <link rel="stylesheet" href="../res/css/global.css">
     <link rel="stylesheet" href="../res/css/cntl.css">
     <style>
+        /* 整体页面背景设置为淡橙色，营造温馨活泼的动漫氛围 */
         body {
-            background: #0f172a;
-            color: #e2e8f0;
-            font-family: 'Arial', sans-serif;
+            background-color: #ffe5b4;
+            font-family: Arial, sans-serif;
         }
+
+        /* 头部样式调整 */
         .fly-header {
-            background-color: #6188c9;
+            background-color: #ff8c00;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .fly-logo img {
+
+        .fly-logo {
+            display: inline-block;
+            width: 50px;
             height: 50px;
+            border-radius: 50%;
+            background-color: white;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
         }
-        .layui-container {
-            padding-top: 50px;
+
+        .fly-logo:hover {
+            transform: rotate(360deg);
         }
-        .fly-column {
-            background: #1e293b;
-            border-radius: 1rem;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            padding: 2rem;
-            margin-top: 2rem;
+
+        .layui-nav.fly-nav-user li.layui-nav-item a {
+            color: white;
+            transition: color 0.3s ease;
         }
+
+        .layui-nav.fly-nav-user li.layui-nav-item a:hover {
+            color: #ffd700;
+        }
+
+        /* 导航栏选项样式 */
         .fly-column ul li {
             display: inline-block;
-            margin-right: 1rem;
-        }
-        .fly-column a {
-            color: #e2e8f0;
-            transition: color 0.3s ease-in-out;
-        }
-        .fly-column a:hover {
-            color: #6366f1;
-        }
-        .fly-column .fly-column-right {
-            float: right;
-        }
-        .fly-panel-title {
-            background: #2d3748;
-            padding: 1rem;
-            border-radius: 1rem;
-            margin-bottom: 1rem;
-        }
-        .fly-panel-title span {
+            margin-right: 5px;
             cursor: pointer;
-            margin-right: 1rem;
-            color: #e2e8f0;
-            transition: color 0.3s ease-in-out;
+            color: #333;
+            transition: color 0.3s ease;
         }
-        .fly-panel-title span:hover {
-            color: #6366f1;
+
+        .fly-column ul li:hover {
+            color: #ff8c00;
         }
-        .fly-list {
-            list-style: none;
-            padding: 0;
+
+        .fly-column ul li.layui-this {
+            color: #ff8c00;
+            font-weight: bold;
         }
-        .fly-list li {
-            background: #2d3748;
-            margin-bottom: 1rem;
-            padding: 1rem;
-            border-radius: 1rem;
+
+        .fly-search {
+            font-size: 20px;
+            color: #333;
+            margin-right: 10px;
+            transition: color 0.3s ease;
         }
-        .fly-avatar img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 1rem;
+
+        .fly-search:hover {
+            color: #ff8c00;
         }
-        .fly-footer {
-            background-color: #0f172a;
-            color: #e2e8f0;
-            text-align: center;
-            padding: 1rem;
+
+        .layui-btn {
+            background-color: #ff8c00;
+            color: white;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .layui-btn:hover {
+            background-color: #ffa500;
+        }
+
+        /* 面板相关样式 */
+        .fly-panel {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .fly-panel-title {
+            color: #8b4513;
+            margin-bottom: 15px;
+        }
+
+        .fly-filter-right a {
+            color: #333;
+            margin-right: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .fly-filter-right a:hover {
+            color: #ff8c00;
         }
     </style>
 </head>
 <body>
-
 <div class="fly-header ">
     <div class="layui-container">
         <a class="fly-logo" href="showIndex.action">
@@ -95,12 +120,12 @@
         <ul class="layui-nav fly-nav-user">
             <li class="layui-nav-item">
                 <a class="fly-nav-avatar" href="javascript:;">
-                    <cite class="layui-hide-xs">你好啊</cite>
+                    <cite class="layui-hide-xs">哈喽呀~</cite>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="main"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的主页</a></dd>
+                    <dd><a href="main"><i class="layui-icon" style="margin-left: 2px; font-size: 22px;">&#xe68e;</i>我的小天地</a></dd>
                     <hr style="margin: 5px 0;">
-                    <dd><a href="logout" style="text-align: center;">退出</a></dd>
+                    <dd><a href="logout" style="text-align: center;">拜拜咯~</a></dd>
                 </dl>
             </li>
         </ul>
@@ -110,48 +135,46 @@
 <div class="fly-column">
     <div class="layui-container">
         <ul class="layui-clear">
-            <li class="layui-hide-xs layui-this"><a href="main.action">主页</a></li>
+            <li class="layui-hide-xs layui-this"><a href="main.action">主页面哟~</a></li>
 
-            <li><a href="main.action?cid=1">交通</a></li>
+            <li><a href="main.action?cid=1">交通~</a></li>
 
-            <li><a href="main.action?cid=2">电影</a></li>
+            <li><a href="main.action?cid=2">电影~</a></li>
 
-            <li><a href="main.action?cid=3">早餐</a></li>
+            <li><a href="main.action?cid=3">早餐~</a></li>
 
-            <li><a href="main.action?cid=4">午餐</a></li>
+            <li><a href="main.action?cid=4">午餐~</a></li>
 
-            <li><a href="main.action?cid=5">晚餐</a></li>
+            <li><a href="main.action?cid=5">晚餐~</a></li>
 
-            <li><a href="main.action?cid=6">娱乐</a></li>
+            <li><a href="main.action?cid=6">娱乐~</a></li>
 
-            <li><a href="main.action?cid=7">教育</a></li>
+            <li><a href="main.action?cid=7">教育~</a></li>
 
-            <li><a href="main.action?cid=8">旅游</a></li>
+            <li><a href="main.action?cid=8">旅游~</a></li>
 
-            <li><a href="main.action?cid=9">购物</a></li>
+            <li><a href="main.action?cid=9">购物~</a></li>
 
-            <li><a href="main.action?cid=10">油费</a></li>
+            <li><a href="main.action?cid=10">油费呀~</a></li>
 
-            <li><a href="main.action?cid=11">宠物</a></li>
+            <li><a href="main.action?cid=11">宠物~</a></li>
 
-            <li><a href="main.action?cid=12">看病</a></li>
+            <li><a href="main.action?cid=12">医生~</a></li>
 
-            <li><a href="main.action?cid=13">饮料</a></li>
+            <li><a href="main.action?cid=13">饮料~</a></li>
 
-            <li><a href="main.action?cid=14">礼物</a></li>
+            <li><a href="main.action?cid=14">礼物~</a></li>
 
-            <li><a href="main.action?cid=15">其他</a></li>
+            <li><a href="main.action?cid=15">杂项~</a></li>
 
-            <li><a href="main.action?cid=16">工资</a></li>
+            <li><a href="main.action?cid=16">工资收入~</a></li>
 
-            <li><a href="main.action?cid=17">额外收入</a></li>
+            <li><a href="main.action?cid=17">小收入~</a></li>
 
-            <li><a href="main.action?cid=18">零碎收入</a></li>
-
+            <li><a href="main.action?cid=18">小进账~</a></li>
         </ul>
         <div class="fly-column-right layui-hide-xs">
-            <span class="fly-search"><i class="layui-icon"></i></span>
-            <a href="add.action" class="layui-btn">记一笔</a>
+            <a href="add.action" class="layui-btn">记上一笔呀~</a>
         </div>
     </div>
 </div>
@@ -161,14 +184,14 @@
         <div class="layui-col-md12">
             <div class="fly-panel" style="margin-bottom: 0;">
                 <div class="fly-panel-title fly-filter">
-                    <span id="zhichu">支出</span>
+                    <span id="zhichu">支出开销</span>
                     <span class="fly-mid"></span>
-                    <span id="shouru">收入</span>
+                    <span id="shouru">收入进账</span>
                     <span class="fly-filter-right layui-hide-xs">
-            <a href="main?order=time" class="layui-this">时间</a>
-            <span class="fly-mid"></span>
-            <a href="main?order=money">金额</a>
-          </span>
+                            <a href="main?order=time" class="layui-this">按时间排序哟~</a>
+                            <span class="fly-mid"></span>
+                            <a href="main?order=money">按金额排序呀~</a>
+                        </span>
                 </div>
                 <ul class="fly-list">
 

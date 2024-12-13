@@ -11,57 +11,99 @@
   <link rel="stylesheet" href="../res/css/global.css">
   <link rel="stylesheet" href="../res/css/cntl.css">
   <style>
+    /* 整体页面背景设置为淡蓝色，营造清新的动漫氛围 */
     body {
-      background: #0f172a;
-      color: #e2e8f0;
-      font-family: 'Arial', sans-serif;
+      background-color: #e6f7ff;
+      font-family: Arial, sans-serif;
     }
-    .fly-header {
-      background-color: #1e293b;
+
+    /* 头部样式调整，让其更具动漫风格 */
+    .fly-header.layui-bg-black {
+      background-color: #1e90ff!important;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
+
     .fly-logo img {
-      height: 50px;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
     }
-    .layui-container {
-      padding-top: 50px;
+
+    .fly-logo img:hover {
+      transform: rotate(360deg);
     }
+
+    .layui-nav.fly-nav-user li.layui-nav-item a {
+      color: white;
+      transition: color 0.3s ease;
+    }
+
+    .layui-nav.fly-nav-user li.layui-nav-item a:hover {
+      color: #add8e6;
+    }
+
+    /* 注册面板样式，添加圆角、阴影等使其像动漫里的卡片 */
     .register-panel {
-      background: #1e293b;
-      border-radius: 1rem;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-      padding: 2rem;
-      margin-top: 5rem;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 20px;
     }
-    .register-panel h2 {
-      color: #6366f1;
+
+    h2 {
+      color: #009688;
       text-align: center;
-      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     }
-    .layui-input-block input {
-      background-color: #2d3748;
-      border: none;
-      border-radius: 0.5rem;
-      color: #e2e8f0;
+
+    /* 选项卡标题样式，动漫风格的颜色和鼠标悬停效果 */
+    .layui-tab-title li {
+      color: #333;
+      cursor: pointer;
+      transition: color 0.3s ease;
     }
+
+    .layui-tab-title li:hover {
+      color: #009688;
+    }
+
+    .layui-tab-title.layui-this {
+      color: #009688;
+      font-weight: bold;
+    }
+
+    /* 表单输入框的动漫风格，比如改变边框颜色、添加圆角等 */
+    .layui-input {
+      border-color: #009688;
+      border-radius: 8px;
+    }
+
+    /* 按钮的动漫风格，改变颜色、添加圆角、悬停效果等 */
     .layui-btn {
-      background-color: #6366f1;
-      border-radius: 2rem;
-      transition: all 0.3s ease-in-out;
+      background-color: #009688;
+      color: white;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
     }
+
     .layui-btn:hover {
-      background-color: #4f46e5;
+      background-color: #00b894;
     }
-    .fly-footer {
-      background-color: #0f172a;
-      color: #e2e8f0;
-      text-align: center;
-      padding: 1rem;
+
+    /* 社交账号登录图标样式 */
+    .iconfont {
+      margin-left: 10px;
+      font-size: 24px;
+      color: #333;
+      transition: color 0.3s ease;
     }
+
+    .iconfont:hover {
+      color: #009688;
+    }
+
     .layui-form-mid {
-      color: #cbd5e1;
+      color: #696969;
     }
   </style>
 </head>
@@ -74,16 +116,10 @@
     </a>
     <ul class="layui-nav fly-nav-user">
       <li class="layui-nav-item">
-        <a href="showUserLogin.action">登录</a>
+        <a href="showUserLogin.action">登录一下啦</a>
       </li>
       <li class="layui-nav-item">
-        <a href="showReg.action">注册</a>
-      </li>
-      <li class="layui-nav-item layui-hide-xs">
-        <a href="" onclick="layer.msg('正在通过QQ登录', {icon:16, shade: 0.1, time:0})" title="QQ登录" class="iconfont icon-qq"></a>
-      </li>
-      <li class="layui-nav-item layui-hide-xs">
-        <a href="" onclick="layer.msg('正在通过微博登录', {icon:16, shade: 0.1, time:0})" title="微博登录" class="iconfont icon-weibo"></a>
+        <a href="showReg.action">快来注册呀</a>
       </li>
     </ul>
   </div>
@@ -91,49 +127,49 @@
 
 <div class="layui-container">
   <div class="register-panel">
-    <h2>创建新账户</h2>
+    <h2>开启奇妙之旅，创建新账户哟~</h2>
     <div class="layui-tab layui-tab-brief" lay-filter="user">
       <ul class="layui-tab-title">
-        <li><a href="showUserLogin.action">登录</a></li>
-        <li class="layui-this">注册</li>
+        <li><a href="showUserLogin.action">登录那边哦</a></li>
+        <li class="layui-this">注册这里呀</li>
       </ul>
       <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
         <div class="layui-tab-item layui-show">
           <form class="layui-form" action="register.action" method="post">
             <div class="layui-form-item">
-              <label for="L_email" class="layui-form-label">邮箱</label>
+              <label for="L_email" class="layui-form-label">电子邮箱</label>
               <div class="layui-input-inline">
-                <input type="email" id="L_email" name="email" required lay-verify="required|email" autocomplete="off" class="layui-input">
+                <input type="email" id="L_email" name="email" required lay-verify="required|email"
+                       autocomplete="off" class="layui-input">
               </div>
-              <div class="layui-form-mid">将会成为您唯一的登录名</div>
+              <div class="layui-form-mid">它会成为您超重要的登录名哦~</div>
             </div>
             <div class="layui-form-item">
-              <label for="L_username" class="layui-form-label">昵称</label>
+              <label for="L_username" class="layui-form-label">可爱昵称</label>
               <div class="layui-input-inline">
-                <input type="text" id="L_username" name="userName" required lay-verify="required" autocomplete="off" class="layui-input">
-              </div>
-            </div>
-            <div class="layui-form-item">
-              <label for="L_pass" class="layui-form-label">密码</label>
-              <div class="layui-input-inline">
-                <input type="password" id="L_pass" name="password" required lay-verify="required" autocomplete="off" class="layui-input">
-              </div>
-              <div class="layui-form-mid">6到16个字符</div>
-            </div>
-            <div class="layui-form-item">
-              <label for="L_repass" class="layui-form-label">确认密码</label>
-              <div class="layui-input-inline">
-                <input type="password" id="L_repass" name="repass" required lay-verify="required" autocomplete="off" class="layui-input">
+                <input type="text" id="L_username" name="userName" required lay-verify="required"
+                       autocomplete="off" class="layui-input">
               </div>
             </div>
             <div class="layui-form-item">
-              <button class="layui-btn" lay-filter="user-reg" lay-submit="">立即注册</button>
+              <label for="L_pass" class="layui-form-label">秘密口令</label>
+              <div class="layui-input-inline">
+                <input type="password" id="L_pass" name="password" required lay-verify="required"
+                       autocomplete="off" class="layui-input">
+              </div>
+              <div class="layui-form-mid">6到16个字符就好啦~</div>
             </div>
-            <div class="layui-form-item fly-form-app">
-              <span>或者直接使用社交账号快捷注册</span>
-              <a href="" onclick="layer.msg('正在通过QQ登录', {icon:16, shade: 0.1, time:0})" class="iconfont icon-qq" title="QQ登录"></a>
-              <a href="" onclick="layer.msg('正在通过微博登录', {icon:16, shade: 0.1, time:0})" class="iconfont icon-weibo" title="微博登录"></a>
+            <div class="layui-form-item">
+              <label for="L_repass" class="layui-form-label">再确认下口令</label>
+              <div class="layui-input-inline">
+                <input type="password" id="L_repass" name="repass" required lay-verify="required"
+                       autocomplete="off" class="layui-input">
+              </div>
             </div>
+            <div class="layui-form-item">
+              <button class="layui-btn" lay-filter="user-reg" lay-submit="">点此注册啦</button>
+            </div>
+
           </form>
         </div>
       </div>

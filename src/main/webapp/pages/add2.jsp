@@ -12,69 +12,104 @@
     <link rel="stylesheet" href="../res/css/global.css">
     <link rel="stylesheet" href="../res/css/cntl.css">
     <style>
+        /* 整体页面背景设置为淡粉色，营造温馨可爱的动漫氛围 */
         body {
-            background: #f0f2f5;
-            color: #333;
-            font-family: 'Arial', sans-serif;
+            background-color: #ffe4e1;
+            font-family: Arial, sans-serif;
         }
+
+        /* 头部样式调整 */
         .fly-header {
-            background-color: #3b7ae1;
-            padding: 1rem;
+            background-color: #ff69b4;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .fly-logo img {
+
+        .fly-logo {
+            display: inline-block;
+            width: 50px;
             height: 50px;
+            border-radius: 50%;
+            background-color: white;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
         }
-        .layui-container {
-            margin-top: 2rem;
+
+        .fly-logo:hover {
+            transform: rotate(360deg);
         }
-        .layui-tab-title li {
-            color: #fff;
+
+        .layui-nav.fly-nav-user li.layui-nav-item a {
+            color: white;
+            transition: color 0.3s ease;
         }
-        .layui-this {
-            background-color: #6366f1;
+
+        .layui-nav.fly-nav-user li.layui-nav-item a:hover {
+            color: #ffb6c1;
         }
-        .layui-btn {
-            background-color: #6366f1;
-            color: #fff;
-            border-radius: 5px;
-        }
-        .layui-btn:hover {
-            background-color: #4f46e5;
-        }
-        .fly-footer {
-            background-color: #1e293b;
-            color: #e2e8f0;
-            text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
-        }
+
+        /* 表单部分样式 */
         .form-section {
-            background: #ffffff;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
         }
-        .form-section h3 {
-            color: #1e293b;
-            margin-bottom: 1rem;
+
+        h3 {
+            color: #ff1493;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .form-section .layui-input-block {
-            margin-left: 0;
+
+        .layui-tab-title li {
+            color: #333;
+            cursor: pointer;
+            transition: color 0.3s ease;
         }
-        .layui-input, .layui-textarea {
-            border-radius: 5px;
+
+        .layui-tab-title li:hover {
+            color: #ff69b4;
         }
-        .layui-form-item {
-            margin-bottom: 1rem;
+
+        .layui-tab-title.layui-this {
+            color: #ff69b4;
+            font-weight: bold;
         }
-        .layui-select dd.layui-this a {
-            color: #6366f1;
+
+        .layui-input {
+            border-color: #ff69b4;
+            border-radius: 8px;
         }
-        .layui-laydate-content td.layui-this {
-            background-color: #6366f1 !important;
+
+        select {
+            border-color: #ff69b4;
+            border-radius: 8px;
         }
-        .layui-layer-dialog .layui-layer-btn a {
-            color: #6366f1;
+
+        .layui-textarea {
+            border-color: #ff69b4;
+            border-radius: 8px;
+        }
+
+        .layui-btn {
+            background-color: #ff69b4;
+            color: white;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .layui-btn:hover {
+            background-color: #ff1493;
+        }
+
+        /* 页脚样式 */
+        .fly-footer {
+            background-color: #ff69b4;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -87,7 +122,7 @@
         <ul class="layui-nav fly-nav-user">
             <li class="layui-nav-item">
                 <a class="fly-nav-avatar" href="javascript:;">
-                    <cite class="layui-hide-xs">Andy</cite>
+                    <cite class="layui-hide-xs">Andy小可爱~</cite>
                 </a>
             </li>
         </ul>
@@ -96,11 +131,11 @@
 
 <div class="layui-container">
     <div class="form-section">
-        <h3>记一笔（收入）</h3>
+        <h3>来记一笔收入呀~</h3>
         <div class="layui-tab layui-tab-brief" lay-filter="user">
             <ul class="layui-tab-title">
-                <li><a href="add.action">支出</a></li>
-                <li class="layui-this">收入</li>
+                <li><a href="add.action">支出开销那边呢</a></li>
+                <li class="layui-this">收入进账这里哟~</li>
             </ul>
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
@@ -109,21 +144,22 @@
                         <div class="layui-row layui-col-space15">
                             <div class="layui-col-md6">
                                 <div class="layui-form-item">
-                                    <label class="layui-form-label">收入金额</label>
+                                    <label class="layui-form-label">收入金额呀~</label>
                                     <div class="layui-input-block">
-                                        <input type="text" id="money" name="money" required lay-verify="required|number" autocomplete="off" class="layui-input" placeholder="请输入金额">
+                                        <input type="text" id="money" name="money" required lay-verify="required|number"
+                                               autocomplete="off" class="layui-input" placeholder="请输入金额哟~">
                                     </div>
                                 </div>
                             </div>
                             <div class="layui-col-md6">
                                 <div class="layui-form-item">
-                                    <label class="layui-form-label">收入类别</label>
+                                    <label class="layui-form-label">收入类别呢~</label>
                                     <div class="layui-input-block">
                                         <select lay-verify="required" name="cid" lay-filter="column">
-                                            <option value="">请选择...</option>
-                                            <option value="16">工资</option>
-                                            <option value="17">奖金</option>
-                                            <option value="18">其他</option>
+                                            <option value="">请选一下呀~</option>
+                                            <option value="16">工资收入哒</option>
+                                            <option value="17">奖金来咯</option>
+                                            <option value="18">其他收入哟~</option>
                                         </select>
                                     </div>
                                 </div>
@@ -132,7 +168,7 @@
                         <div class="layui-row layui-col-space15">
                             <div class="layui-col-md6">
                                 <div class="layui-form-item">
-                                    <label class="layui-form-label">发生日期</label>
+                                    <label class="layui-form-label">发生日期哟~</label>
                                     <div class="layui-input-block">
                                         <input type="text" class="layui-input" id="test5" name="addTime" placeholder="yyyy-MM-dd HH:mm:ss">
                                     </div>
@@ -140,25 +176,21 @@
                             </div>
                             <div class="layui-col-md6">
                                 <div class="layui-form-item layui-form-text">
-                                    <label class="layui-form-label">详细描述</label>
+                                    <label class="layui-form-label">详细描述一下呀~</label>
                                     <div class="layui-input-block">
-                                        <textarea id="details" name="details" required lay-verify="required" placeholder="请详细描述..." class="layui-textarea"></textarea>
+                                        <textarea id="details" name="details" required lay-verify="required" placeholder="请详细描述...哦" class="layui-textarea"></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <button class="layui-btn" lay-filter="user-add" lay-submit>记一笔</button>
+                            <button class="layui-btn" lay-filter="user-add" lay-submit>记上这笔收入啦~</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="fly-footer">
-    <p>&copy; 2024 快速记. All rights reserved.</p>
 </div>
 
 <script src="../res/layui/layui.js"></script>

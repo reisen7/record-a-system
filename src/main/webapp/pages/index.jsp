@@ -9,45 +9,89 @@
     <title>快速记 - 科技生活，清晰账本</title>
     <!-- 引入Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../res/css/global.css">
     <link rel="stylesheet" href="../res/css/cntl.css">
     <style>
+        /* 整体页面背景设置为淡粉色，营造温馨的动漫氛围 */
         body {
-            background: #7591d3;
-            color: #e2e8f0;
+            background-color: #ffe4e1;
+            font-family: Arial, sans-serif;
         }
-        .navbar {
-            background-color: #b3c4e0;
+
+        /* 导航栏动漫风格调整 */
+        nav.navbar {
+            background-color: #ff69b4;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .feature-card {
-            background: #1e293b;
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: 0 0 20px rgba(0, 0,0, 0.2);
-            transition: transform 0.3s ease-in-out;
+
+        .navbar-brand img {
+            border-radius: 50%;
+            transition: transform 0.3s ease;
         }
-        .feature-card:hover {
-            transform: translateY(-10px);
+
+        .navbar-brand img:hover {
+            transform: rotate(360deg);
         }
-        .feature-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 1rem;
-            transition: all 0.3s ease;
+
+        .navbar-toggler {
+            border-color: white;
         }
-        .feature-image img:hover {
-            opacity: 0.8;
-        }
-        .footer {
-            color: #e2e8f0;
-        }
-        .btn-custom {
-            background-color: #6366f1;
+
+        .navbar-nav.nav-link {
             color: white;
-            border-radius: 2rem;
+            transition: color 0.3s ease;
         }
-        .btn-custom:hover {
-            background-color: #4f46e5;
+
+        .navbar-nav.nav-link:hover {
+            color: #ffb6c1;
+        }
+
+        /* 主体内容部分的标题样式 */
+        h1.display-4 {
+            color: #8b008b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 主体内容的段落文字样式 */
+        p.lead {
+            color: #696969;
+        }
+
+        /* 功能卡片的整体样式，类似动漫里的卡片效果 */
+        .feature-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-image img {
+            border-radius: 10px;
+        }
+
+        .feature-card h3 {
+            color: #8b008b;
+            margin-top: 10px;
+        }
+
+        .feature-card p {
+            color: #696969;
+        }
+
+        /* 页脚部分样式 */
+        footer.footer {
+            background-color: #ff69b4;
+            color: white;
+        }
+
+        footer.footer p {
+            margin-bottom: 0;
         }
     </style>
 </head>
@@ -65,14 +109,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
+
                 <li class="nav-item">
-                    <a class="nav-link" href="login.html"><i class="fas fa-user-circle"></i></a>
+                    <a class="nav-link" href="showUserLogin.action">登录一下啦</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="showUserLogin.action">登录</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="showReg.action">注册</a>
+                    <a class="nav-link" href="showReg.action">快来注册呀</a>
                 </li>
             </ul>
         </div>
@@ -83,8 +125,8 @@
 <div class="container mt-5 pt-5">
     <div class="row text-center">
         <div class="col-lg-12 mb-4">
-            <h1 class="display-4 fw-bold">快速记 - 让您的生活更简单</h1>
-            <p class="lead">免费在线账本服务，安全可靠，随时访问。</p>
+            <h1 class="display-4 fw-bold">快速记 - 开启超便利生活咯</h1>
+            <p class="lead">超棒的免费在线账本服务呀，超安全可靠哒，随时都能访问哦。</p>
         </div>
     </div>
     <div class="row g-4">
@@ -93,8 +135,8 @@
                 <div class="feature-image mb-3">
                     <img src="../res/images/a4.png" alt="书本" class="img-fluid rounded">
                 </div>
-                <h3>随时随地记账</h3>
-                <p>只需网络连接和浏览器，轻松管理个人财务。</p>
+                <h3>随时随地快乐记账</h3>
+                <p>只要有网络连接和浏览器，就能轻松管理个人财务啦。</p>
             </div>
         </div>
         <div class="col-md-6 col-lg-3">
@@ -102,8 +144,8 @@
                 <div class="feature-image mb-3">
                     <img src="../res/images/a1.png" alt="计算" class="img-fluid rounded">
                 </div>
-                <h3>智能计算</h3>
-                <p>简化复杂计算，让财务管理变得轻松。</p>
+                <h3>超智能计算哟</h3>
+                <p>把复杂计算变得超简单，财务管理轻松又愉快呢。</p>
             </div>
         </div>
         <div class="col-md-6 col-lg-3">
@@ -111,8 +153,8 @@
                 <div class="feature-image mb-3">
                     <img src="../res/images/a2.png" alt="导出" class="img-fluid rounded">
                 </div>
-                <h3>Excel导出</h3>
-                <p>方便查看历史记录，支持导出到Excel。</p>
+                <h3>便捷Excel导出呀</h3>
+                <p>方便查看历史记录哦，还能导出到Excel呢。</p>
             </div>
         </div>
         <div class="col-md-6 col-lg-3">
@@ -120,8 +162,8 @@
                 <div class="feature-image mb-3">
                     <img src="../res/images/a3.png" alt="安全" class="img-fluid rounded">
                 </div>
-                <h3>数据安全</h3>
-                <p>采用高级加密技术，确保您的信息安全。</p>
+                <h3>超强数据安全保障</h3>
+                <p>用高级加密技术，守护您的信息安全哒。</p>
             </div>
         </div>
     </div>

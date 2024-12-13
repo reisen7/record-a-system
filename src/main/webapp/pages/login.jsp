@@ -10,52 +10,75 @@
     <link rel="stylesheet" href="../res/css/global.css">
     <link rel="stylesheet" href="../res/css/cntl.css">
     <style>
+        /* 整体页面背景设置为一个淡淡的动漫风颜色，比如淡蓝色 */
         body {
-            background: #0f172a;
-            color: #e2e8f0;
-            font-family: 'Arial', sans-serif;
+            background-color: #e6f7ff;
+            font-family: Arial, sans-serif;
         }
-        .fly-header {
-            background-color: #1e293b;
-        }
-        .fly-logo img {
-            height: 50px;
-        }
-        .layui-container {
-            padding-top: 50px;
-        }
+
+        /* 登录面板样式，添加一些圆角、阴影，使其看起来更像动漫里的卡片 */
         .login-panel {
-            background: #1e293b;
-            border-radius: 1rem;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            padding: 2rem;
-            margin-top: 5rem;
-            height: 500px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
-        .login-panel h2 {
-            color: #6366f1;
+
+        /* 标题文字的动漫风格调整，比如改变字体颜色、添加一些动画效果（这里只是简单示例，hover时变色） */
+        h2 {
+            color: #009688;
             text-align: center;
-            margin-bottom: 1.5rem;
+            transition: color 0.3s ease;
         }
-        .layui-input-block input {
-            background-color: #2d3748;
-            border: none;
-            border-radius: 0.5rem;
-            color: #e2e8f0;
+
+        h2:hover {
+            color: #00b894;
         }
+
+        /* 选项卡标题样式，动漫风格的颜色和鼠标悬停效果 */
+        .layui-tab-title li {
+            color: #333;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .layui-tab-title li:hover {
+            color: #009688;
+        }
+
+        .layui-tab-title.layui-this {
+            color: #009688;
+            font-weight: bold;
+        }
+
+        /* 表单输入框的动漫风格，比如改变边框颜色、添加圆角等 */
+        .layui-input {
+            border-color: #009688;
+            border-radius: 8px;
+        }
+
+        /* 按钮的动漫风格，改变颜色、添加圆角、悬停效果等 */
         .layui-btn {
-            background-color: #6366f1;
-            border-radius: 2rem;
-            transition: all 0.3s ease-in-out;
+            background-color: #009688;
+            color: white;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
         }
+
         .layui-btn:hover {
-            background-color: #4f46e5;
+            background-color: #00b894;
         }
-        .fly-footer {
-            background-color: #0f172a;
-            color: #e2e8f0;
-            text-align: center;
-            padding: 1rem;
+
+        /* 忘记密码链接的样式，改变颜色、添加下划线悬停效果等 */
+        a {
+            color: #009688;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #00b894;
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -79,32 +102,34 @@
 
 <div class="layui-container">
     <div class="login-panel">
-        <h2>欢迎回来</h2>
+        <h2>嘿，伙伴！欢迎回来呀~</h2>
         <div class="layui-tab layui-tab-brief" lay-filter="user">
             <ul class="layui-tab-title">
-                <li class="layui-this">登录</li>
-                <li><a href="showReg.action">注册</a></li>
+                <li class="layui-this">登录啦</li>
+                <li><a href="showReg.action">注册哟</a></li>
             </ul>
             <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
                 <div class="layui-tab-item layui-show">
                     <form class="layui-form" action="login.action" method="post">
                         <div class="layui-form-item">
-                            <label for="L_email" class="layui-form-label">邮箱</label>
+                            <label for="L_email" class="layui-form-label">电子邮箱</label>
                             <div class="layui-input-block">
-                                <input type="email" id="L_email" name="account" required lay-verify="email" autocomplete="off" class="layui-input">
+                                <input type="email" id="L_email" name="account" required lay-verify="email"
+                                       autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label for="L_pass" class="layui-form-label">密码</label>
+                            <label for="L_pass" class="layui-form-label">秘密口令</label>
                             <div class="layui-input-block">
-                                <input type="password" id="L_pass" name="password" required lay-verify="required" autocomplete="off" class="layui-input">
+                                <input type="password" id="L_pass" name="password" required lay-verify="required"
+                                       autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <button class="layui-btn" lay-submit="" lay-filter="user-login">立即登录</button>
-                            <span style="padding-left:20px;">
-                <a href="forget.html">忘记密码？</a>
-              </span>
+                            <button class="layui-btn" lay-submit="" lay-filter="user-login">点此登录</button>
+                            <span style="padding-left: 20px;">
+                                    <a href="forget.html">忘了口令？</a>
+                                </span>
                         </div>
                     </form>
                 </div>
